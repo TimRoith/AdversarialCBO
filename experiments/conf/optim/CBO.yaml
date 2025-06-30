@@ -1,0 +1,13 @@
+name: CBO
+max_it: 10000
+max_eval: 1000
+alpha: 1000
+sigma: 8.1
+verbosity: 0
+check_f_dims: False
+dt: 0.01
+update_wait_thresh: 25
+factor: 1.1
+lamda: 1.
+latent: False
+batch_size: None

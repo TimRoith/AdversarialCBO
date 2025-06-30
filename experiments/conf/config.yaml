@@ -1,0 +1,22 @@
+defaults:
+  - _self_
+  - model: CNN
+  - data: MNIST
+  - attack: low_res
+  - optim: CBO
+  
+attack:
+  targeted: False
+  num_attacks: 20
+  eps: 0.25
+  
+model:
+  path: ''
+  
+data:
+  shape: []
+  path: ''
+
+  
+device: 'cpu'
+seed: 42

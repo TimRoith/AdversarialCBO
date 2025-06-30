@@ -1,0 +1,2 @@
+name: MadryMNIST
+path: "'../../weights/madry_models/adv_trained/'"

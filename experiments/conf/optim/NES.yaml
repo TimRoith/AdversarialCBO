@@ -1,0 +1,4 @@
+name: NES
+max_eval: 1000
+eta: 0.01
+sigma: 0.001

@@ -1,0 +1,15 @@
+name: 'MNIST'
+path: '../../datasets'
+num_classes: 10
+mean: 0.1307
+std: 0.3081
+img_range: [0,1]
+batch_size: 128
+shape: [1, 28, 28]
+batch_size_test: 8
+train_split: 0.9
+num_workers: 0
+shuffle: True
+pin_memory: True
+drop_last: True
+download: False

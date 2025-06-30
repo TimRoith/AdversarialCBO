@@ -1,0 +1,39 @@
+defaults:
+  - model: MadryMNIST
+  - data: MNIST
+  - attack: low_res
+  - optim: CBO
+
+data:
+  batch_size_test: 256 
+  
+attack:
+  targeted: False
+  num_attacks: 10000
+  eps: 0.3
+  loss_batch_size: 256
+  N_low: 28
+  only_corr: False
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 1.3
+  sigma: 1.
+  max_eval: 400000
+  max_it: 100000
+  eta: 10.
+  alpha: 15.
+  update_wait_thresh: 5
+  latent: True
+  sampler: normal
+  ess_eta: 0.1
+  batch_size: 10
+  resampling: False
+  use_latent_space_noise: False
+  
+device: 'cuda'
+seed: 42

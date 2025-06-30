@@ -1,0 +1,54 @@
+model:
+  name: VGG
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 224
+  - 224
+  resize_width: 256
+attack:
+  name: index
+  'n': 1
+  eps: 1.0
+  targeted: false
+  num_attacks: 1000
+  loss_batch_size: 16
+optim:
+  name: HoppingCBO
+  max_it: 100000
+  max_eval: 10000
+  alpha: 10.0
+  sigma: 0.001
+  verbosity: 0
+  check_f_dims: false
+  dt: 0.1
+  update_wait_thresh: 25
+  factor: 1.1
+  lamda: 1.0
+  latent: true
+  eta: 10.0
+  NES_mode: false
+  grad_optimizer: momentum_gd
+  sampler: antithetic
+  'N': 50
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 38.0
+Percentage: 3.8
+Average queries (on success): 9730.525 (1693.3947368421052)
+Median queries (on success): 10048.0 (1250.5)

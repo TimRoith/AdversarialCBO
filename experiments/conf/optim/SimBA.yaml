@@ -1,0 +1,4 @@
+name: SimBA
+max_it: 10000
+max_eval: 10000
+verbosity: 0

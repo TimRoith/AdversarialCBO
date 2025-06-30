@@ -1,0 +1,27 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: index
+  - optim: Nevergrad
+  
+attack:
+  targeted: False
+  num_attacks: 1000
+  eps: 1.
+  n: 1
+  loss_batch_size: 16
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  max_eval: 10000
+  opt-name: '1+1'
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: Inception

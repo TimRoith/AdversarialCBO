@@ -1,0 +1,27 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: dct
+  - optim: SimBA
+  
+attack:
+  targeted: False
+  num_attacks: 1000
+  eps: 3.
+  loss_batch_size: 16
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  popsize: 400
+  max_eval: 10000
+  opt-name: DE
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: VGG, ResNet

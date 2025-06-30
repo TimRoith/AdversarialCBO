@@ -1,0 +1,41 @@
+model:
+  name: Inception_v3
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 299
+  - 299
+  resize_width: 342
+attack:
+  name: index
+  'n': 1
+  eps: 1.0
+  targeted: false
+  num_attacks: 1000
+  loss_batch_size: 16
+optim:
+  name: Nevergrad
+  opt-name: DE
+  max_eval: 10000
+  popsize: 400
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 71.0
+Percentage: 7.1
+Average queries (on success): 9378.067 (1367.281690140845)
+Median queries (on success): 10000.0 (503.0)

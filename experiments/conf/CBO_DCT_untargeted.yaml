@@ -1,0 +1,40 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: dct
+  - optim: CBO
+  
+attack:
+  targeted: False
+  num_attacks: 1000
+  loss_batch_size: 16
+  linfty_bound: 100
+  eps: 3.
+  modes: 38
+  project: l2
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 1.3
+  sigma: 1.
+  max_eval: 10000
+  max_it: 100000
+  eta: 10.
+  alpha: 15.
+  update_wait_thresh: 5
+  latent: True
+  sampler: normal
+  ess_eta: 0.1
+  batch_size: 10
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: Inception, ResNet, VGG

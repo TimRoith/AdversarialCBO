@@ -1,0 +1,57 @@
+model:
+  name: Inception_v3
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 299
+  - 299
+  resize_width: 342
+attack:
+  name: low_res
+  N_low: 50
+  eps: 0.05
+  interp_mode: nearest
+  targeted: true
+  num_attacks: 1000
+  loss_batch_size: 16
+optim:
+  name: HoppingCBO
+  max_it: 100000
+  max_eval: 100000
+  alpha: 10.0
+  sigma: 0.001
+  verbosity: 0
+  check_f_dims: false
+  dt: 0.1
+  update_wait_thresh: 25
+  factor: 1.1
+  lamda: 1.0
+  latent: true
+  eta: 10.0
+  NES_mode: false
+  grad_optimizer: momentum_gd
+  sampler: antithetic
+  'N': 50
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 979.0
+Percentage: 97.9
+Average queries (on success): 10296.217 (9977.88151174668)
+Median queries (on success): 7753.0 (7651.0)
+Average ℓ-2 distance: 17.326951171875
+Average ℓ-inf distance: 0.050299972534179685

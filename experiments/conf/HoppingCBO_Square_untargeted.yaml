@@ -1,0 +1,36 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: square
+  - optim: HoppingCBO
+  
+attack:
+  targeted: False
+  num_attacks: 1000
+  eps: 0.05
+  loss_batch_size: 16
+  num_squares: 50
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 0.1
+  sigma: 0.001
+  max_eval: 10000
+  max_it: 100000
+  eta: 10.
+  alpha: 10.
+  NES_mode: False
+  grad_optimizer: momentum_gd
+  sampler: antithetic
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: Inception, ResNet, VGG

@@ -1,0 +1,36 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: index
+  - optim: HoppingCBO
+  
+attack:
+  targeted: False
+  num_attacks: 1000
+  eps: 1.
+  n: 1
+  loss_batch_size: 16
+  
+model:
+  path: '../../weights/'
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 0.1
+  sigma: 0.001
+  max_eval: 40000
+  max_it: 100000
+  eta: 10.
+  alpha: 10.
+  NES_mode: False
+  grad_optimizer: momentum_gd
+  sampler: antithetic
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: AlexNet

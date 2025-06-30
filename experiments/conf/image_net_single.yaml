@@ -1,0 +1,35 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - attack: low_res
+  - optim: HoppingCBO
+  
+attack:
+  targeted: True
+  num_attacks: 1000
+  eps: 0.05
+  loss_batch_size: 16
+  N_low: 35
+  
+model:
+  path: '../../weights/'
+  
+data:
+  shape: [1,28,28]
+  path: '../../datasets'
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 0.1
+  sigma: 0.001
+  max_eval: 50000
+  eta: 10
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          attack.N_low: 35

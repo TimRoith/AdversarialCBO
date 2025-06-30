@@ -1,0 +1,42 @@
+model:
+  name: AlexNet
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 227
+  - 227
+  resize_width: 227
+attack:
+  name: index
+  'n': 1
+  eps: 1.0
+  targeted: false
+  num_attacks: 1000
+  loss_batch_size: 16
+optim:
+  name: Nevergrad
+  opt-name: 1+1
+  max_eval: 40000
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 59.0
+Percentage: 5.9
+Average queries (on success): 37673.099 (561.0)
+Median queries (on success): 40000.0 (18.0)
+Average ℓ-2 distance: 1.0723489990234376
+Average ℓ-inf distance: 0.783839111328125

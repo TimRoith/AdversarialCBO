@@ -1,0 +1,26 @@
+defaults:
+  - _self_
+  - model: ConvNext
+  - data: ImageNet
+  - attack: low_res
+  - optim: CBO
+  
+attack:
+  targeted: False
+  num_attacks: 50
+  eps: 0.25
+  loss_batch_size: 8
+  
+model:
+  path: ''
+  
+data:
+  shape: []
+  
+optim:
+  verbosity: 0
+  N: 50
+
+  
+device: 'cpu'
+seed: 42

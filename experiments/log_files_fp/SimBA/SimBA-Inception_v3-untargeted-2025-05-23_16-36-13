@@ -1,0 +1,46 @@
+model:
+  name: Inception_v3
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 299
+  - 299
+  resize_width: 342
+attack:
+  name: dct
+  eps: 3.0
+  modes: 14
+  project: none
+  targeted: false
+  num_attacks: 1000
+  loss_batch_size: 16
+optim:
+  name: SimBA
+  max_it: 10000
+  max_eval: 10000
+  verbosity: 0
+  popsize: 400
+  opt-name: DE
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 869.0
+Percentage: 86.9
+Average queries (on success): 2982.084 (2111.7284234752588)
+Median queries (on success): 1143.5 (1057.0)
+Average ℓ-2 distance: 4.63507080078125
+Average ℓ-inf distance: 0.04561257553100586

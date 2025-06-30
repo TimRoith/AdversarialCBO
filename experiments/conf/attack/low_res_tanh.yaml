@@ -1,0 +1,4 @@
+name: low_res_tanh
+N_low: 15
+eps: 0.1
+interp_mode: nearest

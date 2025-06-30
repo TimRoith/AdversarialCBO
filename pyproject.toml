@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name="advcbx"
+version="0.1.4"
+authors = [
+    {name = "Tim Roith", email = "tim.roith@desy.de"},
+]
+description="advcbx"
+dependencies = [  
+    'numpy', 
+    'scipy',
+    'matplotlib',
+    'torch'
+    ]
+readme = "README.md"
+requires-python = ">3.5.2"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+    ]
+
+[project.optional-dependencies] # Optional dependencies
+test = [
+    'pytest',
+    ]
+
+[tool.setuptools]
+packages = ['advcbx', 'advcbx.models', 'advcbx.attackspace','advcbx.data','advcbx.optim']

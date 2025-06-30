@@ -1,0 +1,26 @@
+defaults:
+  - _self_
+  - model: CNN
+  - data: MNIST
+  - attack: low_res
+  - optim: CBO
+  
+attack:
+  targeted: True
+  num_attacks: 1000
+  eps: 0.1
+  loss_batch_size: 16
+  
+model:
+  path: 'models/'
+  
+data:
+  shape: [1,28,28]
+  
+optim:
+  verbosity: 1
+  N: 50
+
+  
+device: 'cuda'
+seed: 42

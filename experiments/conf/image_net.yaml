@@ -1,0 +1,37 @@
+defaults:
+  - model: ResNet
+  - data: ImageNet
+  - attack: low_res
+  - optim: CBO
+  
+attack:
+  targeted: True
+  num_attacks: 500
+  eps: 0.05
+  loss_batch_size: 10
+  N_low: 30
+  
+model:
+  path: '../../weights/'
+  
+data:
+  path: '../../datasets'
+  batch_size_test: 8
+  
+optim:
+  verbosity: 0
+  N: 20
+  dt: 1.5
+  sigma: 1.
+  alpha: 15
+  latent: True
+  factor: 1.01
+  max_eval: 50000
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          attack.N_low: 5,10,20,30,40,50,100,150,200,250

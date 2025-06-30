@@ -1,0 +1,19 @@
+defaults:
+  - model: ResNetCIFAR
+  - data: CIFAR10
+  - attack: low_res_tanh
+  - optim: Nevergrad
+  
+attack:
+  targeted: True
+  num_attacks: 1000
+  eps: 0.05
+  loss_batch_size: 16
+  N_low: 32
+  
+optim:
+  max_eval: 10000
+  opt-name: CMA-Diagonal
+  
+device: 'cuda'
+seed: 42

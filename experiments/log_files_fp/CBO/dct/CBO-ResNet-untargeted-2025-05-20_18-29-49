@@ -1,0 +1,58 @@
+model:
+  name: ResNet
+  path: ../../weights/
+data:
+  name: ImageNet
+  path: ../../datasets
+  num_classes: 1000
+  batch_size: 8
+  batch_size_test: 8
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  download: false
+  img_range:
+  - 0.0
+  - 1.0
+  shape:
+  - 3
+  - 224
+  - 224
+  resize_width: 256
+attack:
+  name: dct
+  eps: 3.0
+  modes: 38
+  project: l2
+  targeted: false
+  num_attacks: 1000
+  loss_batch_size: 16
+  linfty_bound: 100
+optim:
+  name: CBO
+  max_it: 100000
+  max_eval: 10000
+  alpha: 15.0
+  sigma: 1.0
+  verbosity: 0
+  check_f_dims: false
+  dt: 1.3
+  update_wait_thresh: 5
+  factor: 1.1
+  lamda: 1.0
+  latent: true
+  batch_size: 10
+  'N': 50
+  eta: 10.0
+  sampler: normal
+  ess_eta: 0.1
+device: cuda
+seed: 42
+Performed attacks on 1000 different images
+Total successful attacks: 337.0
+Percentage: 33.7
+Average queries (on success): 6947.05 (960.4747774480712)
+Median queries (on success): 9990.0 (140.0)
+Average ℓ-2 distance: 2.82787841796875
+Average ℓ-inf distance: 0.03833555221557617

@@ -1,0 +1,24 @@
+defaults:
+  - model: Inception
+  - data: ImageNet
+  - optim: SquareAttack
+  - attack: square
+attack:
+  targeted: False
+  num_attacks: 1000
+  loss_batch_size: 16
+  linfty_bound: 100
+  eps: 3.
+  modes: 38
+  project: l2
+  
+model:
+  path: '../../weights/'
+  
+device: 'cuda'
+seed: 42
+    
+hydra:
+    sweeper:
+        params:
+          model: Inception, ResNet, VGG

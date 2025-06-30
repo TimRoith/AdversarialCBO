@@ -1,0 +1,2 @@
+# Installing
+```pip install -e .```

@@ -1,0 +1,28 @@
+defaults:
+  - model: ResNetCIFAR
+  - data: CIFAR10
+  - attack: low_res
+  - optim: HoppingCBO
+  
+attack:
+  targeted: True
+  num_attacks: 1000
+  eps: 0.05
+  loss_batch_size: 16
+  N_low: 32
+  
+optim:
+  verbosity: 0
+  N: 50
+  dt: 0.1
+  sigma: 0.001
+  max_eval: 10000
+  max_it: 100000
+  eta: 10.
+  alpha: 10.
+  NES_mode: False
+  grad_optimizer: momentum_gd
+  sampler: antithetic
+  
+device: 'cuda'
+seed: 42
