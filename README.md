@@ -40,11 +40,11 @@ The module [`advcbx/attackspace`](advcbx/attackspace/) defines various attack sp
 - [`advcbx/attackspace/attack_space.py`](advcbx/attackspace/attack_space.py): Implements the base class for attack spaces.
 - [`advcbx/attackspace/low_res`](advcbx/attackspace/low_res.py): Implements low-resolution attack spaces.
  ![Fig1](https://github.com/user-attachments/assets/b4851a3d-389a-45f9-8b5b-16bd4bfea887)
-- [`advcbx/attackspace/dct`](advcbx/attackspace/dct.py): Implements DCT-based attack spaces.
+- [`advcbx/attackspace/dct`](advcbx/attackspace/dct.py): Implements DCT-based attack spaces, see [Simple Black-box Adversarial Attacks](https://arxiv.org/abs/1905.07121).
   ![Fig3](https://github.com/user-attachments/assets/ebc271ed-94b3-4894-b537-800d7ae29db8)
-- [`advcbx/attackspace/square`](advcbx/attackspace/square.py): Implements square attack spaces, see [Square Attack: a query-efficient black-box adversarial attack via random search](https://arxiv.org/abs/1912.00049)
+- [`advcbx/attackspace/square`](advcbx/attackspace/square.py): Implements square attack spaces, see [Square Attack: a query-efficient black-box adversarial attack via random search](https://arxiv.org/abs/1912.00049).
   ![Fig4](https://github.com/user-attachments/assets/5eb6a002-0888-4a02-a3a2-321147f4e118)
-- [`advcbx/attackspace/index`](advcbx/attackspace/index.py): Implements $P$-pixel attacks.
+- [`advcbx/attackspace/index`](advcbx/attackspace/index.py): Implements $P$-pixel attacks, see [One pixel attack for fooling deep neural networks](https://arxiv.org/abs/1710.08864).
   ![Fig2](https://github.com/user-attachments/assets/0edae1a3-a497-4fbd-badf-1b2983b75b80)
 
 
