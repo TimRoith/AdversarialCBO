@@ -37,11 +37,16 @@ The module [`advcbx/optim`](advcbx/optim/) contains the core optimizers. Most im
 ### 2. Attack Spaces
 The module [`advcbx/attackspace`](advcbx/attackspace/) defines various attack spaces for adversarial attacks. The attacks can be loaded with the functions in [`advcbx/attackspace/load_attack.py`](advcbx/attackspace/load_attack.py) based on a configuration file. The attack spaces include:
 
-- [`advcbx/attackspace/attack_space.py`](advcbx/attackspace/attack_space.py): Implements the base class for attack spaces
+- [`advcbx/attackspace/attack_space.py`](advcbx/attackspace/attack_space.py): Implements the base class for attack spaces.
 - [`advcbx/attackspace/low_res`](advcbx/attackspace/low_res.py): Implements low-resolution attack spaces.
+ ![Fig1](https://github.com/user-attachments/assets/b4851a3d-389a-45f9-8b5b-16bd4bfea887)
 - [`advcbx/attackspace/dct`](advcbx/attackspace/dct.py): Implements DCT-based attack spaces.
-- [`advcbx/attackspace/square`](advcbx/attackspace/square.py): Implements square attack spaces.
+  ![Fig3](https://github.com/user-attachments/assets/ebc271ed-94b3-4894-b537-800d7ae29db8)
+- [`advcbx/attackspace/square`](advcbx/attackspace/square.py): Implements square attack spaces, see [Square Attack: a query-efficient black-box adversarial attack via random search](https://arxiv.org/abs/1912.00049)
+  ![Fig4](https://github.com/user-attachments/assets/5eb6a002-0888-4a02-a3a2-321147f4e118)
 - [`advcbx/attackspace/index`](advcbx/attackspace/index.py): Implements $P$-pixel attacks.
+  ![Fig2](https://github.com/user-attachments/assets/0edae1a3-a497-4fbd-badf-1b2983b75b80)
+
 
 ### 3. Models and Data
 The module [`advcbx/models`](advcbx/models/) contains the model definitions and loading utilities. The models can be loaded with the functions in [`advcbx/models/load_model.py`](advcbx/models/load_model.py) based on a configuration file.
