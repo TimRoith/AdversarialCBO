@@ -11,14 +11,17 @@ def margin_loss(logits, target):
     return logits.max(dim=-1)[0] - corr_prob
 
 class cross_entropy_margin:
-    def __init__(self, margin = 10, **kwargs):
+    def __init__(self, margin = 10, cleared_thresh = 0.0, **kwargs):
         self.CE     = nn.CrossEntropyLoss(reduction='none')
         self.margin = margin
+        self.cleared_thresh = cleared_thresh
     
     def __call__(self, logits, targets):
         ce_loss = self.CE(logits, targets)
-        pred    = logits.argmax(dim=1)
-        return ce_loss - self.margin * (pred == targets)
+        tk      = logits.topk(2)
+        pred    = tk[1][:,0]
+        cleared = (tk[0][:,0] - tk[0][:,1]) > self.cleared_thresh
+        return ce_loss - self.margin * (pred == targets) * cleared
 
 def select_loss(name = None, targeted = False):
     if name is None:
@@ -101,12 +104,12 @@ class bbobjective:
 def eval_success(model, x_adv, y, k=1, targeted=False):
     M = x_adv.shape[0]
     success = torch.zeros((M,))
-    topk = model(x_adv).topk(k)[1]
     for m in range(M):
+        topk = model(x_adv[m:m+1,...]).topk(k)[1]
         if targeted:
-            success[m] = y[m] in topk[m]
+            success[m] = y[m] in topk
         else:
-            success[m] = y[m] not in topk[m]
+            success[m] = y[m] not in topk
 
     return success
     

@@ -78,7 +78,23 @@ class adversarial_term:
             #eq = torch.logical_and(labels[:, 0]==dyn.f.y[dyn.active_runs_idx], cleared_prob)
 
             if not self.reeval:
-                eq = torch.tensor(dyn.best_energy[dyn.active_runs_idx] < self.untargeted_loss_thresh)
+                eq = dyn.best_energy[dyn.active_runs_idx] < 0.
+                neg_idx = np.where(eq)[0]
+                potential_adv_idx = dyn.active_runs_idx[eq]
+
+                # check each index individually to prevent batch effects
+                for j,i in enumerate(potential_adv_idx):
+                    pred = dyn.f.model(
+                        dyn.f.apply(
+                            dyn.best_particle[i:i+1, None,:], 
+                            check_valid=True, 
+                            run_idx=[i]))
+                    dyn.num_f_eval[i] += 1
+                    prob, labels = torch.topk(pred, k=2)
+                    if not (labels[:, 0] == dyn.f.y[i]):
+                        eq[neg_idx[j]] = False
+                
+                eq = torch.tensor(eq)
             else:
                 cleared_prob = (prob[:, 0] - prob[:, 1]) > self.prob_thresh
                 eq = torch.logical_and(labels[:, 0]==dyn.f.y[dyn.active_runs_idx], cleared_prob)

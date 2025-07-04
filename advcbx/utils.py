@@ -8,7 +8,7 @@ def fix_seed(seed=1):
     torch.manual_seed(seed*3)
     torch.cuda.manual_seed(seed*4)
     torch.cuda.manual_seed_all(seed*5) # if you are using multi-GPU.
-    torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
 
 def test_model_acc(model, it, device='cuda'):
@@ -21,8 +21,10 @@ def test_model_acc(model, it, device='cuda'):
     
 def get_y(y, targeted=False, num_classes=10):
     if targeted:
+        rng = torch.Generator(device = y.device)
+        rng.manual_seed(int(y[0].item()))
         c = torch.nn.functional.one_hot(y, num_classes=num_classes)
-        y = torch.multinomial(1.-c,num_samples=1)[:,0]
+        y = torch.multinomial(1.-c,num_samples=1, generator = rng)[:,0]
     return y
 
 def get_corr_idx(model, x, y):

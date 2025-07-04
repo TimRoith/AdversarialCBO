@@ -1,6 +1,6 @@
 from torchvision import datasets, transforms
 import torchvision
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, RandomSampler
 from torchvision.datasets import ImageFolder
 import torch
 import PIL
@@ -123,9 +123,15 @@ def load_ImageNet_test(cfg):
         transforms.CenterCrop(im_width),
         transforms.ToTensor(),
     ])
+
+    rng = torch.Generator()
+    rng.manual_seed(cfg.seed + 8)
     
     val = torchvision.datasets.ImageNet(cfgd.path + '/ImageNet', split='val', transform=transform)
-    loader_kwargs = {'pin_memory':True, 'num_workers':cfgd.num_workers, 'shuffle': cfgd.shuffle}
+    sampler = RandomSampler(val, generator=rng)
+    
+    loader_kwargs = {'pin_memory':True, 'num_workers': 0, 'shuffle': False,
+                     'sampler': sampler, 'persistent_workers':False}
     val_loader = DataLoader(val, batch_size=cfgd.batch_size_test, **loader_kwargs)
     return val_loader
 
